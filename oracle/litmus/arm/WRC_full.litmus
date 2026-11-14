@@ -1,0 +1,10 @@
+AArch64 WRC_full
+{
+0:X20=x; 1:X20=x; 1:X21=y; 2:X20=y; 2:X21=x;
+}
+P0 | P1 | P2 ;
+MOV W0,#1 | LDR W11,[X20] | LDR W13,[X20] ;
+STR W0,[X20] | DMB ISH | DMB ISH ;
+ | MOV W0,#1 | LDR W14,[X21] ;
+ | STR W0,[X21] |  ;
+exists (1:X11=1 /\ 2:X13=1 /\ 2:X14=0)

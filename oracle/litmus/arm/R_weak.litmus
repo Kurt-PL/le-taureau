@@ -1,0 +1,12 @@
+AArch64 R_weak
+{
+0:X20=x; 0:X21=y; 1:X20=y; 1:X21=x;
+}
+P0 | P1 ;
+MOV W0,#1 | MOV W0,#2 ;
+STR W0,[X20] | STR W0,[X20] ;
+DMB ISHLD | DMB ISHLD ;
+DMB ISHST | DMB ISHST ;
+MOV W0,#1 | LDR W11,[X21] ;
+STR W0,[X21] |  ;
+exists (y=2 /\ 1:X11=0)

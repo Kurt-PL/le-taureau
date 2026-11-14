@@ -1,0 +1,7 @@
+#!/bin/zsh
+# Build every module of theories/ (logical name LeTaureau). Usage: ./build [make arguments]
+set -e
+cd "${0:A:h}"
+ulimit -t 60   # CPU guard per process
+rocq makefile -f _CoqProject -o Makefile.rocq
+make -f Makefile.rocq -j4 "$@"

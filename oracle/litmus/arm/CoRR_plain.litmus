@@ -1,0 +1,8 @@
+AArch64 CoRR_plain
+{
+0:X20=x; 1:X20=x;
+}
+P0 | P1 ;
+MOV W0,#1 | LDR W11,[X20] ;
+STR W0,[X20] | LDR W13,[X20] ;
+exists (1:X11=1 /\ 1:X13=0)

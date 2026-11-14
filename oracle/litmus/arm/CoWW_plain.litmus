@@ -1,0 +1,10 @@
+AArch64 CoWW_plain
+{
+0:X20=x;
+}
+P0 ;
+MOV W0,#1 ;
+STR W0,[X20] ;
+MOV W0,#2 ;
+STR W0,[X20] ;
+exists (x=1)

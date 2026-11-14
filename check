@@ -1,0 +1,38 @@
+#!/bin/zsh
+# Run ./build first. ./check PART runs one part of the checks; each part is one job (under 30 CPU
+# seconds) and exits with status 0 only if it passes. All parts together are the whole check.
+#   pa-core, pa-cas1, pa-cas2,        Print Assumptions on the headline theorems of
+#   pa-oracle1 .. pa-oracle4,         theories/HeadlineCore.v, HeadlineCas1.v, HeadlineCas2.v,
+#   pa-wbdq                           HeadlineOracle1.v .. HeadlineOracle4.v and HeadlineWBDQ.v:
+#                                     every one must print "Closed under the global context"
+#   chk-1, chk-2, chk-3               rocqchk on a third of the modules of theories/ each, every module
+#                                     named with -norec
+# ./check with no argument lists the parts.
+cd "${0:A:h}"
+ulimit -t 60
+parts=(pa-core pa-cas1 pa-cas2 pa-oracle1 pa-oracle2 pa-oracle3 pa-oracle4 pa-wbdq chk-1 chk-2 chk-3)
+pa() {
+  local want got
+  want=$(grep -c '^Print Assumptions' theories/$1.v)
+  got=$(rocq compile -R theories LeTaureau theories/$1.v | grep -c 'Closed under the global context')
+  echo "$1: $got of $want closed"
+  (( got == want ))
+}
+chk() {
+  local mods n size first last args out rc
+  mods=(theories/*.v); n=${#mods}; size=$(( (n + 2) / 3 ))
+  first=$(( ($1 - 1) * size + 1 )); last=$(( $1 * size < n ? $1 * size : n ))
+  args=(); for f in $mods[$first,$last]; do args+=(-norec LeTaureau.${${f:t}%.v}); done
+  out=$(rocqchk -R theories LeTaureau "${args[@]}" 2>&1); rc=$?
+  echo "rocqchk part $1, $(( ${#args} / 2 )) modules: $(print -r -- $out | tail -1)"
+  return $rc
+}
+case $1 in
+  pa-core) pa HeadlineCore ;;
+  pa-cas1) pa HeadlineCas1 ;;
+  pa-cas2) pa HeadlineCas2 ;;
+  pa-oracle[1-4]) pa HeadlineOracle${1#pa-oracle} ;;
+  pa-wbdq) pa HeadlineWBDQ ;;
+  chk-1|chk-2|chk-3) chk ${1#chk-} ;;
+  *) echo "usage: ./check PART, PART one of: $parts"; exit 2 ;;
+esac

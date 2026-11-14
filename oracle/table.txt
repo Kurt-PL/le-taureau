@@ -1,0 +1,54 @@
+MP.plain         req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v MP_plain_allowed
+MP.atomic        req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v MP_plain_allowed
+MP.full          req=F  POWER=N  ARM=N  C11=N               M2DQIfaceUse.v fenced_sc_dq
+MP.weak          req=F  POWER=N  ARM=N  C11=N               M2DQIfaceUse.v MPra_forbidden_dq
+SB.plain         req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v SB_plain_allowed
+SB.atomic        req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v SB_plain_allowed
+SB.full          req=F  POWER=N  ARM=N  C11=N               M2DQIfaceUse.v fenced_sc_dq; MILitNeg.v SBf_forbidden
+SB.weak          req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v SB_weak_allowed
+LB.plain         req=A  POWER=S  ARM=S  C11=N  hw-stronger  M2DQOracleRows.v LB_plain_allowed
+LB.atomic        req=A  POWER=S  ARM=S  C11=N  hw-stronger  M2DQOracleRows.v LB_plain_allowed
+LB.full          req=F  POWER=N  ARM=N  C11=N               M2DQIfaceUse.v fenced_sc_dq; MILitNeg.v LBfull_forbidden
+LB.weak          req=A  POWER=N  ARM=N  C11=N  hw-stronger  M2DQOracleRows.v LB_weak_allowed
+WRC.plain        req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v WRC_plain_allowed
+WRC.atomic       req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v WRC_plain_allowed
+WRC.full         req=F  POWER=N  ARM=N  C11=N               M2DQIfaceUse.v fenced_sc_dq
+WRC.weak         req=A  POWER=N  ARM=N  C11=S  hw-stronger  M2DQOracleRows.v WRC_weak_allowed
+IRIW.plain       req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v IRIW_plain_allowed
+IRIW.atomic      req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v IRIW_plain_allowed
+IRIW.full        req=F  POWER=N  ARM=N  C11=N               M2DQIfaceUse.v fenced_sc_dq; MILitNeg.v IRIWf_forbidden
+IRIW.weak        req=A  POWER=S  ARM=N  C11=S  hw-stronger  M2DQOracleRank.v IRIW_weak_allowed
+ISA2.plain       req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v ISA2_plain_allowed
+ISA2.atomic      req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v ISA2_plain_allowed
+ISA2.full        req=F  POWER=N  ARM=N  C11=N               M2DQIfaceUse.v fenced_sc_dq
+ISA2.weak        req=A  POWER=N  ARM=N  C11=S  hw-stronger  M2DQOracleRows.v ISA2_weak_allowed
+2+2W.plain       req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v W22_plain_allowed
+2+2W.atomic      req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v W22_plain_allowed
+2+2W.full        req=F  POWER=N  ARM=N  C11=N               M2DQIfaceUse.v fenced_sc_dq; MILitNeg.v W22f_forbidden
+2+2W.weak        req=A  POWER=N  ARM=N  C11=S  hw-stronger  M2DQOracleRank.v W22_weak_allowed
+R.plain          req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v R_plain_allowed
+R.atomic         req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v R_plain_allowed
+R.full           req=F  POWER=N  ARM=N  C11=N               M2DQIfaceUse.v fenced_sc_dq; MILitNeg.v Rf_forbidden
+R.weak           req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v R_weak_allowed
+S.plain          req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v S_plain_allowed
+S.atomic         req=A  POWER=S  ARM=S  C11=S               M2DQOracleRows.v S_plain_allowed
+S.full           req=F  POWER=N  ARM=N  C11=N               M2DQIfaceUse.v fenced_sc_dq
+S.weak           req=A  POWER=N  ARM=N  C11=N  hw-stronger  M2DQOracleRows.v S_weak_allowed
+LBweakS          req=A  POWER=N  ARM=N  C11=N  hw-stronger  M2DQOracleRows.v LBweakS_allowed
+SweakS           req=A  POWER=N  ARM=N  C11=S  hw-stronger  M2DQOracleRows.v SweakS_allowed
+FWDLD            req=A  POWER=N  ARM=S  C11=S  hw-stronger  M2DQOracleRows.v FWDLD_allowed
+CoRR.plain       req=F  POWER=N  ARM=N  C11=N               MILitNeg.v CoRR_forbidden
+CoWW.plain       req=F  POWER=N  ARM=N  C11=N               MILitNeg.v CoWW_forbidden
+CoRW1.plain      req=F  POWER=N  ARM=N  C11=N               MILitNeg.v CoRW1_forbidden
+CoRW2.plain      req=F  POWER=N  ARM=N  C11=N               MILitNeg.v CoRW2_forbidden
+CoWR.plain       req=F  POWER=N  ARM=N  C11=N               MILitNeg.v CoWR_forbidden
+LBdata1          req=A  POWER=S  ARM=S  C11=N  hw-stronger  M2DQOracleRows.v LBdata1_allowed
+LBfalse          req=A  POWER=N  ARM=N  C11=N  hw-stronger  M2DQOracleRows.v LBfalse_allowed
+LBfd             req=A  POWER=N  ARM=N  C11=N  hw-stronger  M2DQOracleRows.v LBfd_allowed
+OwnFuture        req=F  POWER=N  ARM=N  C11=N               M2DQOracleOwn.v OwnFuture_forbidden_Q
+CoRWlate         req=F  POWER=N  ARM=N  C11=N               M2DQOracleCoRW.v CoRWlate_forbidden_Q
+CoRWearly        req=F  POWER=N  ARM=N  C11=N               M2DQOracleCoRW.v CoRWearly_forbidden_Q
+DRF.C3Cex        req=F  POWER=N  ARM=N  C11=N               M2DQOracleDRF.v C3Cex_forbidden_Q
+LBctrl1          req=A  POWER=–  ARM=–  C11=–               M2DQOracleRows.v LBctrl1_allowed
+OOTA             req=F  POWER=–  ARM=–  C11=–               M2DQOracleDRF.v OOTA_forbidden_Q
+OOTActrl         req=F  POWER=–  ARM=–  C11=–               M2DQOracleDRF.v OOTActrl_forbidden_Q

@@ -1,0 +1,10 @@
+AArch64 OwnFuture
+{
+0:X20=x; 0:X21=y; 1:X20=y; 1:X21=x;
+}
+P0 | P1 ;
+LDR W11,[X20] | LDR W13,[X20] ;
+MOV W0,#1 | STR W13,[X21] ;
+STR W0,[X20] |  ;
+STR W11,[X21] |  ;
+exists (0:X11=1 /\ 1:X13=1)

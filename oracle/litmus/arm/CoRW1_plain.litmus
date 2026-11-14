@@ -1,0 +1,9 @@
+AArch64 CoRW1_plain
+{
+0:X20=x;
+}
+P0 ;
+LDR W11,[X20] ;
+MOV W0,#1 ;
+STR W0,[X20] ;
+exists (0:X11=1)

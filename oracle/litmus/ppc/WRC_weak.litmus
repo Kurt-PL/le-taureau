@@ -1,0 +1,10 @@
+PPC WRC_weak
+{
+0:r20=x; 1:r20=x; 1:r21=y; 2:r20=y; 2:r21=x;
+}
+P0 | P1 | P2 ;
+li r0,1 | lwz r1,0(r20) | lwz r3,0(r20) ;
+stw r0,0(r20) | lwsync | lwsync ;
+ | li r0,1 | lwz r4,0(r21) ;
+ | stw r0,0(r21) |  ;
+exists (1:r1=1 /\ 2:r3=1 /\ 2:r4=0)

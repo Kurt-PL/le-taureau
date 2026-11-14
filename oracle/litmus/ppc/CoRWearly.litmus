@@ -1,0 +1,16 @@
+PPC CoRWearly
+{
+0:r20=x; 0:r21=y; 1:r20=y; 1:r21=x; 2:r20=x;
+}
+P0 | P1 | P2 ;
+lwz r1,0(r20) | lwz r2,0(r20) | lwz r3,0(r20) ;
+cmpwi r1,0 | cmpwi r2,1 | lwz r4,0(r20) ;
+bne L01 | bne L11 |  ;
+b L02 | li r0,1 |  ;
+L01: | stw r0,0(r21) |  ;
+li r0,2 | b L12 |  ;
+stw r0,0(r20) | L11: |  ;
+li r0,1 | L12: |  ;
+stw r0,0(r21) | li r0,3 |  ;
+L02: | stw r0,0(r21) |  ;
+exists (0:r1=1 /\ 1:r2=1 /\ 2:r3=3 /\ 2:r4=2)

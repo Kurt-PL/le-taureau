@@ -1,0 +1,16 @@
+AArch64 CoRWearly
+{
+0:X20=x; 0:X21=y; 1:X20=y; 1:X21=x; 2:X20=x;
+}
+P0 | P1 | P2 ;
+LDR W11,[X20] | LDR W12,[X20] | LDR W13,[X20] ;
+CMP W11,#0 | CMP W12,#1 | LDR W14,[X20] ;
+B.NE L01 | B.NE L11 |  ;
+B L02 | MOV W0,#1 |  ;
+L01: | STR W0,[X21] |  ;
+MOV W0,#2 | B L12 |  ;
+STR W0,[X20] | L11: |  ;
+MOV W0,#1 | L12: |  ;
+STR W0,[X21] | MOV W0,#3 |  ;
+L02: | STR W0,[X21] |  ;
+exists (0:X11=1 /\ 1:X12=1 /\ 2:X13=3 /\ 2:X14=2)

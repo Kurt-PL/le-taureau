@@ -1,0 +1,11 @@
+PPC SweakS
+{
+0:r20=x; 0:r21=y; 1:r20=y; 1:r21=x;
+}
+P0 | P1 ;
+li r0,2 | lwz r1,0(r20) ;
+stw r0,0(r20) | lwsync ;
+lwsync | li r0,1 ;
+li r0,1 | stw r0,0(r21) ;
+stw r0,0(r21) |  ;
+exists (x=2 /\ 1:r1=1)

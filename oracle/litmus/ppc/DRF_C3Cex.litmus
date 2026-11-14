@@ -1,0 +1,24 @@
+PPC DRF_C3Cex
+{
+0:r20=y; 0:r21=x; 0:r22=c; 1:r20=x; 1:r21=y;
+}
+P0 | P1 ;
+lwz r1,0(r20) | lwz r3,0(r20) ;
+cmpwi r1,1 | cmpwi r3,1 ;
+bne L01 | bne L11 ;
+li r0,1 | li r0,1 ;
+stw r0,0(r21) | stw r0,0(r21) ;
+b L02 | b L12 ;
+L01: | L11: ;
+li r0,1 | L12: ;
+stw r0,0(r22) |  ;
+lwz r2,0(r22) |  ;
+cmpwi r2,0 |  ;
+bne L03 |  ;
+li r0,1 |  ;
+stw r0,0(r21) |  ;
+b L04 |  ;
+L03: |  ;
+L04: |  ;
+L02: |  ;
+exists (0:r1=1 /\ 1:r3=1)

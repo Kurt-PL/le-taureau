@@ -1,0 +1,10 @@
+PPC 2p2W_plain
+{
+0:r20=x; 0:r21=y; 1:r20=y; 1:r21=x;
+}
+P0 | P1 ;
+li r0,1 | li r0,1 ;
+stw r0,0(r20) | stw r0,0(r20) ;
+li r0,2 | li r0,2 ;
+stw r0,0(r21) | stw r0,0(r21) ;
+exists (x=1 /\ y=1)

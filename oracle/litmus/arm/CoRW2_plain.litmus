@@ -1,0 +1,9 @@
+AArch64 CoRW2_plain
+{
+0:X20=x; 1:X20=x;
+}
+P0 | P1 ;
+LDR W11,[X20] | MOV W0,#2 ;
+MOV W0,#1 | STR W0,[X20] ;
+STR W0,[X20] |  ;
+exists (0:X11=2 /\ x=2)

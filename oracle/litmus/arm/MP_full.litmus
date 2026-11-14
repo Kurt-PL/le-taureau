@@ -1,0 +1,11 @@
+AArch64 MP_full
+{
+0:X20=x; 0:X21=y; 1:X20=y; 1:X21=x;
+}
+P0 | P1 ;
+MOV W0,#1 | LDR W11,[X20] ;
+STR W0,[X20] | DMB ISH ;
+DMB ISH | LDR W13,[X21] ;
+MOV W0,#1 |  ;
+STR W0,[X21] |  ;
+exists (1:X11=1 /\ 1:X13=0)

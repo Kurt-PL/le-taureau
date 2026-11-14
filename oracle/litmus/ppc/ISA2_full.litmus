@@ -1,0 +1,11 @@
+PPC ISA2_full
+{
+0:r20=x; 0:r21=y; 1:r20=y; 1:r21=z; 2:r20=z; 2:r21=x;
+}
+P0 | P1 | P2 ;
+li r0,1 | lwz r1,0(r20) | lwz r3,0(r20) ;
+stw r0,0(r20) | sync | sync ;
+sync | li r0,1 | lwz r4,0(r21) ;
+li r0,1 | stw r0,0(r21) |  ;
+stw r0,0(r21) |  |  ;
+exists (1:r1=1 /\ 2:r3=1 /\ 2:r4=0)

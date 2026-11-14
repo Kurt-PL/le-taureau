@@ -1,0 +1,7 @@
+C CoRW1_plain
+{ [x] = 0; }
+P0 (atomic_int* x) {
+  int r1 = atomic_load_explicit(x, memory_order_relaxed);
+  atomic_store_explicit(x, 1, memory_order_relaxed);
+}
+exists (0:r1=1)

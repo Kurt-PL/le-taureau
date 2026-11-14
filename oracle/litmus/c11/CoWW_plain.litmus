@@ -1,0 +1,7 @@
+C CoWW_plain
+{ [x] = 0; }
+P0 (atomic_int* x) {
+  atomic_store_explicit(x, 1, memory_order_relaxed);
+  atomic_store_explicit(x, 2, memory_order_relaxed);
+}
+exists ([x]=1)
